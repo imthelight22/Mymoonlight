@@ -1,0 +1,685 @@
+:root {
+  /* Moonlit Reunion x ornate banner frames */
+  --bg-night-deep: #060822;
+  --bg-night-mid: #10145a;
+  --bg-indigo: #1b2275;
+  --azure: #2f5fd6;
+  --azure-soft: #5b8cf0;
+  --cyan-glow: #8fdcff;
+  --moon-glow: #eef1ff;
+  --gold-accent: #d9b97a;
+  --gold-deep: #a8843f;
+  --silver-border: #9fb0e6;
+  --lavender: #b9b4ec;
+  --paper: #ece6dc;
+  --paper-ink: #2f357f;
+  --paper-ink-soft: #565c9e;
+  --text-main: #e8ecff;
+  --text-muted: #aab4d8;
+  --glass-bg: rgba(16, 20, 90, 0.55);
+  --glass-panel: rgba(27, 34, 117, 0.35);
+  --glow-soft: 0 0 22px rgba(143, 220, 255, 0.28);
+  /* teardrop-arch pattern from the banner art */
+  --arch: radial-gradient(ellipse 13px 19px at 50% 100%, rgba(255,255,255,.10) 0 58%, transparent 61%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--bg-night-deep);
+  background-image:
+    radial-gradient(circle at 78% 6%, rgba(238, 241, 255, 0.30) 0%, rgba(185, 180, 236, 0.12) 12%, transparent 30%),
+    radial-gradient(ellipse at top, var(--bg-indigo) 0%, var(--bg-night-mid) 55%, var(--bg-night-deep) 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(10px, 3vw, 2rem);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Stars + faint drifting cloud bands */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(#fff 1px, transparent 1.2px),
+    radial-gradient(rgba(143,220,255,.9) 1px, transparent 1.2px);
+  background-size: 64px 64px, 97px 97px;
+  background-position: 0 0, 31px 47px;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Outer frame: double gold/silver keyline like the banner borders */
+.window-frame {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  min-width: 320px;
+  background: linear-gradient(180deg, rgba(27, 34, 117, 0.75) 0%, rgba(8, 10, 40, 0.92) 100%);
+  border: 1px solid var(--gold-accent);
+  border-radius: clamp(18px, 4vw, 30px);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 4px rgba(6, 8, 34, 0.9),
+    0 0 0 5px rgba(159, 176, 230, 0.55),
+    0 18px 40px rgba(0, 0, 0, 0.55),
+    var(--glow-soft);
+  backdrop-filter: blur(10px);
+}
+
+/* Header: pill ribbon with a jewel at centre */
+.ribbon-header {
+  position: relative;
+  height: 62px;
+  background:
+    var(--arch) 0 100% / 26px 22px repeat-x,
+    linear-gradient(180deg, rgba(47, 95, 214, 0.45) 0%, rgba(16, 20, 90, 0) 100%);
+  border-bottom: 1px solid rgba(217, 185, 122, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pink-trim {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent) 30%, var(--cyan-glow) 50%, var(--gold-accent) 70%, transparent);
+}
+
+.center-bow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.bow-wing {
+  position: relative;
+  width: clamp(28px, 9vw, 80px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent));
+}
+.bow-wing:last-child { transform: scaleX(-1); }
+/* little curl at the end of each wing */
+.bow-wing::before {
+  content: "";
+  position: absolute;
+  left: 0; top: -4px;
+  width: 8px; height: 8px;
+  border: 1px solid var(--gold-accent);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(45deg);
+  opacity: .8;
+}
+
+.shell-emblem {
+  /* just a moon: no shape, border or fill, so nothing can squash when the window shrinks */
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  display: block;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--moon-glow);
+  margin: 0 10px;
+  text-shadow: 0 0 10px rgba(143, 220, 255, 0.85), 0 0 24px rgba(143, 220, 255, 0.4);
+}
+
+.lace-scallop {
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 6px;
+  background:
+    radial-gradient(circle at 50% 0, var(--gold-accent) 0 1.5px, transparent 2px) 0 0 / 22px 6px repeat-x;
+  opacity: .7;
+}
+
+/* Inner panel */
+.ocean-browser {
+  position: relative;
+  margin: clamp(8px, 1.5vw, 14px) clamp(6px, 1.5vw, 12px) 8px;
+  background: var(--glass-panel);
+  border: 1px solid rgba(159, 176, 230, 0.4);
+  border-radius: clamp(14px, 3vw, 22px);
+  padding: clamp(8px, 2vw, 14px);
+  min-width: 0;
+  box-shadow: inset 0 0 28px rgba(0,0,0,0.35);
+}
+
+/* Music Control */
+.music-bar { display: flex; justify-content: center; margin-bottom: 14px; }
+
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(180deg, rgba(47, 95, 214, 0.5), rgba(16, 20, 90, 0.6));
+  border: 1px solid var(--gold-accent);
+  border-radius: 999px;
+  padding: 9px 22px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  font-weight: 600;
+  color: var(--moon-glow);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  min-height: 44px;
+  box-shadow: 0 0 0 3px rgba(6,8,34,.6);
+}
+.music-btn:hover { box-shadow: 0 0 0 3px rgba(6,8,34,.6), 0 0 16px rgba(143, 220, 255, 0.5); }
+.music-btn.playing {
+  background: linear-gradient(180deg, var(--gold-accent), var(--gold-deep));
+  color: var(--bg-night-deep);
+}
+
+/* Top bar: long pill banner */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--arch) 0 100% / 26px 22px repeat-x, linear-gradient(90deg, rgba(47,95,214,.35), rgba(91,140,240,.18), rgba(47,95,214,.35));
+  border: 1px solid var(--silver-border);
+  border-radius: 26px; /* fixed value: 999px made the corners grow with the bar's height */
+  /* extra bottom padding keeps the pills and icons above the scallop pattern */
+  padding: 12px 24px 26px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  box-shadow: 0 0 0 3px rgba(6,8,34,.55);
+}
+
+.pill {
+  background: transparent;
+  border: 1px solid rgba(217, 185, 122, 0.6);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.status-pill span { font-weight: 700; color: var(--gold-accent); text-shadow: 0 0 8px rgba(217,185,122,.5); }
+
+/* .pill sets nowrap, which made the long title run off the box: allow wrapping */
+.title-pill { flex: 1 1 100%; order: -1; min-width: 0; text-align: center; border: none; padding: 0; white-space: normal; }
+.title-pill h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.95rem, 3vw, 1.3rem);
+  font-weight: 500;
+  color: var(--moon-glow);
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 12px rgba(143, 220, 255, 0.45);
+  overflow-wrap: break-word;
+  line-height: 1.3;
+}
+
+.window-controls { display: flex; gap: 6px; flex-shrink: 0; }
+.dot-btn {
+  background: none;
+  border: 0;
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--moon-glow);
+  text-shadow: 0 0 8px rgba(143, 220, 255, 0.5);
+}
+
+/* Hero banner: framed like the tall banner with corner jewels */
+.hero-banner {
+  position: relative;
+  background: rgba(6, 8, 34, 0.4);
+  border: 1px solid rgba(217, 185, 122, 0.55);
+  border-radius: 18px;
+  padding: clamp(10px, 2vw, 16px);
+  margin-bottom: 16px;
+  box-shadow: 0 0 0 3px rgba(6,8,34,.5), 0 0 0 4px rgba(159,176,230,.35);
+}
+
+.banner-header { margin-bottom: 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.big-phrase { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 3.5vw, 1.5rem); color: var(--moon-glow); letter-spacing: 1.5px; }
+.small-phrase { font-size: clamp(0.8rem, 2.5vw, 1rem); color: var(--gold-accent); font-style: italic; }
+
+.banner-art-box {
+  position: relative;
+  min-height: clamp(130px, 22vw, 170px);
+  padding: 24px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(159, 176, 230, 0.4);
+  background:
+    radial-gradient(circle at 70% 35%, rgba(238,241,255,.35) 0 7%, rgba(185,180,236,.15) 8% 16%, transparent 40%),
+    var(--arch) 0 100% / 30px 26px repeat-x,
+    linear-gradient(180deg, rgba(16,20,90,.9) 0%, rgba(47,95,214,.55) 100%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Crescent moon wrapped in a ring */
+.banner-art-box::before {
+  content: "☾";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(90px, 22vw, 130px);
+  color: rgba(238, 241, 255, 0.08);
+  text-shadow: 0 0 40px rgba(238, 241, 255, 0.3);
+  z-index: 1;
+}
+
+/* Flower-field silhouette along the bottom, like the artwork */
+.banner-art-box::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 26px;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(238,241,255,.45) 0 2px, transparent 3px) 0 0 / 18px 14px repeat-x,
+    linear-gradient(180deg, transparent, rgba(6,8,34,.75));
+  z-index: 2;
+}
+
+/* Looping moon video behind the welcome note */
+.banner-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  filter: brightness(0.85) saturate(1.05);
+  transition: opacity 1.5s linear; /* keep in sync with FADE in moon-loop.js */
+}
+/* newest copy sits on top and fades in; the old one stays solid underneath until it's covered */
+.banner-video.is-active { opacity: 1; z-index: 1; }
+.banner-video.is-leaving { opacity: 1; z-index: 0; transition: none; }
+/* the video replaces the drawn crescent */
+.banner-art-box:has(.banner-video)::before { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .banner-video { display: none; }
+}
+
+.banner-center-note {
+  position: relative;
+  z-index: 3;
+  max-width: 95%;
+  background: rgba(6, 8, 34, 0.8);
+  border: 1px solid var(--gold-accent);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  font-weight: 500;
+  color: var(--moon-glow);
+  text-align: center;
+  box-shadow: 0 0 0 3px rgba(6,8,34,.5), 0 4px 18px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.sea-deco { position: absolute; z-index: 3; font-size: 1rem; opacity: 0.8; color: var(--gold-accent); text-shadow: 0 0 8px rgba(217,185,122,.6); }
+.d1 { top: 12px; left: 10%; }
+.d2 { top: 15px; right: 12%; }
+.d3 { bottom: 30px; left: 8%; }
+.d4 { bottom: 28px; right: 10%; }
+
+.art-credit { position: absolute; z-index: 4; bottom: 6px; right: 12px; font-size: 0.7rem; color: var(--lavender); font-style: italic; }
+
+/* Navigation: a stack of pill banners with jewel end-caps */
+.nav-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 6px;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(217,185,122,.35);
+  border-bottom: 1px solid rgba(217,185,122,.35);
+}
+.sea-icon { font-size: 1rem; color: var(--gold-accent); flex-shrink: 0; }
+
+.nav-pill {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--arch) 0 100% / 24px 20px repeat-x, linear-gradient(180deg, rgba(47,95,214,.25), rgba(16,20,90,.55));
+  border: 1px solid var(--silver-border);
+  border-radius: 999px;
+  padding: 10px 26px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.8rem, 2.4vw, 0.95rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  min-height: 44px;
+}
+/* diamond jewels on each end */
+.nav-pill::before,
+.nav-pill::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px; height: 7px;
+  background: var(--silver-border);
+  transform: translateY(-50%) rotate(45deg);
+  transition: all .3s ease;
+}
+.nav-pill::before { left: 10px; }
+.nav-pill::after { right: 10px; }
+
+.nav-pill:hover,
+.nav-pill.active {
+  background: var(--arch) 0 100% / 24px 20px repeat-x, linear-gradient(180deg, rgba(91,140,240,.6), rgba(47,95,214,.5));
+  color: var(--moon-glow);
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 14px rgba(143, 220, 255, 0.4);
+}
+.nav-pill:hover::before, .nav-pill:hover::after,
+.nav-pill.active::before, .nav-pill.active::after {
+  background: var(--gold-accent);
+  box-shadow: 0 0 8px var(--gold-accent);
+}
+.nav-pill:focus-visible { outline: 2px solid var(--cyan-glow); outline-offset: 3px; }
+
+/* Content grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.left-col {
+  min-width: 0;
+  background: var(--glass-bg);
+  border: 1px solid rgba(159, 176, 230, 0.3);
+  border-radius: 16px;
+  padding: clamp(12px, 2.5vw, 20px);
+  box-shadow: 0 0 0 3px rgba(6,8,34,.4);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Name ribbon */
+.name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+
+.star-badge {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--gold-accent);
+  font-size: 1.25rem;
+  line-height: 1;
+  flex: 0 0 auto;
+  text-shadow: 0 0 8px rgba(217,185,122,.6);
+}
+
+.ribbon-box {
+  flex: 1;
+  min-width: 0;
+  background: linear-gradient(90deg, transparent, rgba(47,95,214,.35), transparent);
+  border-top: 1px solid rgba(217,185,122,.6);
+  border-bottom: 1px solid rgba(217,185,122,.6);
+  padding: 7px 0;
+  text-align: center;
+  font-size: clamp(0.8rem, 2.4vw, 0.95rem);
+  color: var(--moon-glow);
+  overflow-wrap: break-word;
+  letter-spacing: 1px;
+}
+
+/* Bio */
+.bio-split { display: flex; gap: 16px; align-items: flex-start; }
+
+.avatar-frame {
+  width: 90px; height: 106px;
+  border-radius: 45px 45px 10px 10px;  /* arched window */
+  border: 1px solid var(--gold-accent);
+  background: linear-gradient(135deg, rgba(143, 220, 255, 0.25), transparent);
+  padding: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(6,8,34,.6), 0 0 18px rgba(143, 220, 255, 0.3);
+}
+.avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 41px 41px 6px 6px; display: block; }
+
+.bio-intro { font-size: clamp(0.85rem, 2.5vw, 0.9rem); line-height: 1.6; min-width: 0; color: var(--text-muted); }
+.greeting { font-family: 'Cinzel', serif; font-weight: 600; color: var(--gold-accent); margin-bottom: 6px; font-size: clamp(0.9rem, 2.8vw, 1rem); }
+.highlight { color: var(--moon-glow); font-weight: 600; border-bottom: 1px dashed var(--gold-accent); }
+
+/* Divider with star jewel */
+.pearl-divider {
+  margin: 18px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  position: relative;
+}
+.pearl-divider::after {
+  content: "✦";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold-accent);
+  background: var(--bg-night-mid);
+  padding: 0 12px;
+  font-size: 0.9rem;
+  text-shadow: 0 0 8px rgba(217,185,122,.6);
+}
+
+.bio-details {
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  line-height: 1.6;
+  background: rgba(6, 8, 34, 0.35);
+  padding: clamp(10px, 2vw, 14px);
+  border-radius: 12px;
+  border: 1px solid rgba(159, 176, 230, 0.25);
+  overflow-wrap: break-word;
+}
+
+.comm-heading { margin-top: 14px; font-weight: 600; color: var(--moon-glow); font-family: 'Cinzel', serif; }
+.comm-list { margin: 8px 0 12px 16px; line-height: 1.6; color: var(--text-muted); }
+.comm-list li { margin-bottom: 6px; }
+.comm-list strong { color: var(--gold-accent); font-weight: 600; }
+.comm-other { line-height: 1.6; margin-top: 10px; }
+
+.tos-list {
+  margin-top: 10px;
+  font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+  line-height: 1.7;
+  background: rgba(6, 8, 34, 0.35);
+  padding: 14px 14px 14px 26px;
+  border-radius: 12px;
+  border: 1px solid rgba(159, 176, 230, 0.25);
+  color: var(--text-muted);
+}
+.tos-list strong { color: var(--moon-glow); }
+
+/* Right column: cream "Moonlit Reunion" poster card, indigo ink */
+.right-col {
+  position: relative;
+  min-width: 0;
+  background:
+    radial-gradient(circle at 100% 0, rgba(185,180,236,.35) 0 14%, transparent 15%),
+    var(--paper);
+  color: var(--paper-ink);
+  border: 1px solid var(--gold-accent);
+  border-radius: 16px;
+  padding: clamp(12px, 2.5vw, 20px);
+  box-shadow: 0 0 0 3px rgba(6,8,34,.6), 0 0 0 4px rgba(159,176,230,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+/* palette swatch strip, as in the poster */
+.right-col::after {
+  content: "";
+  display: block;
+  height: 8px;
+  margin: 16px 0 0 auto;
+  width: 96px;
+  background: linear-gradient(90deg, #3a3f91 0 25%, #6f74c0 25% 50%, #a9a7dc 50% 75%, #d9d6f0 75%);
+}
+
+.tools-header { text-align: center; margin-bottom: 16px; }
+.tools-header h2 { font-family: 'Cinzel', serif; font-size: clamp(1.05rem, 3vw, 1.2rem); font-weight: 600; color: var(--paper-ink); letter-spacing: 1.5px; }
+.wave-line { font-size: 0.85rem; color: var(--paper-ink-soft); letter-spacing: -1px; overflow: hidden; opacity: 0.6; }
+
+.tool-group { margin-bottom: 16px; }
+
+.category-badge {
+  background: linear-gradient(90deg, transparent, rgba(111,116,192,.25), transparent);
+  color: var(--paper-ink);
+  border-top: 1px solid var(--gold-deep);
+  border-bottom: 1px solid var(--gold-deep);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  padding: 4px 0;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* golden sparkle marks flanking each heading */
+.category-badge::before,
+.category-badge::after {
+  color: #d9a21b;
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 0 6px rgba(240, 190, 60, 0.55);
+}
+.cat-icon { color: #d9a21b; text-shadow: 0 0 6px rgba(240, 190, 60, 0.55); }
+.category-badge::before { content: "₊ ⊹"; margin-right: 8px; }
+.category-badge::after  { content: "⊹ ₊"; margin-left: 8px; }
+
+.tool-list { list-style: none; font-size: clamp(0.8rem, 2.5vw, 0.88rem); line-height: 1.5; color: var(--paper-ink-soft); }
+.tool-list li { margin-bottom: 8px; padding-left: 18px; position: relative; }
+.tool-list li::before { content: "✧"; color: var(--gold-deep); font-weight: bold; position: absolute; left: 0; }
+.tool-list strong { color: var(--paper-ink); }
+.tool-list span { color: var(--paper-ink-soft); font-size: 0.75rem; font-style: italic; }
+
+/* Socials: soft moon chips, no underline. Whole chip is tappable. */
+.social-list li {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 0;
+  min-height: 44px;
+  margin-bottom: 8px;
+  padding: 6px 14px 6px 42px;
+  background: linear-gradient(90deg, rgba(111,116,192,.18), rgba(111,116,192,.04));
+  border: 1px solid rgba(168, 132, 63, 0.45);
+  border-radius: 999px;
+  transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+/* crescent badge replaces the sparkle bullet */
+.social-list li::before {
+  content: "☾";
+  position: absolute;
+  left: 16px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--paper-ink);
+  text-shadow: 0 0 6px rgba(111,116,192,.35);
+}
+.social-list li:hover,
+.social-list li:focus-within {
+  background: linear-gradient(90deg, rgba(91,140,240,.28), rgba(111,116,192,.08));
+  border-color: var(--gold-deep);
+  box-shadow: 0 2px 10px rgba(47,53,127,.25);
+}
+.social-list a {
+  color: var(--paper-ink);
+  font-weight: 700;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+}
+/* stretch the link over the whole chip for an easy tap target */
+.social-list a::after { content: ""; position: absolute; inset: 0; border-radius: 999px; }
+.social-list a:hover { color: var(--azure); }
+.social-list a:focus-visible { outline: none; }
+.social-list li:focus-within { outline: 2px solid var(--azure); outline-offset: 2px; }
+.social-list li span { overflow-wrap: anywhere; }
+
+/* Footer */
+.window-footer {
+  position: relative;
+  margin-top: 12px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 185, 122, 0.35);
+  background: linear-gradient(180deg, transparent 0%, rgba(47, 95, 214, 0.2) 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.footer-pill {
+  background: var(--bg-night-deep);
+  border: 1px solid var(--gold-accent);
+  border-radius: 999px;
+  padding: 4px 18px;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--text-muted);
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+}
+.footer-pill a { color: var(--gold-accent); font-weight: 600; text-decoration: none; letter-spacing: 1px; }
+
+.outer-caption { text-align: center; font-size: 0.75rem; color: var(--text-muted); font-weight: 500; padding: 12px 10px 16px; font-style: italic; letter-spacing: 0.5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .left-col, .right-col { padding: 16px; }
+}
+
+@media (max-width: 520px) {
+  body { padding: 8px; }
+  .top-bar { flex-direction: column; gap: 10px; border-radius: 24px; padding: 12px 14px 24px; }
+  .title-pill { order: -1; width: 100%; }
+  .title-pill h1 { letter-spacing: 0.5px; text-wrap: balance; overflow-wrap: anywhere; }
+  .status-pill { width: auto; max-width: 100%; text-align: center; white-space: normal; }
+  .window-controls { display: none; }
+  .bio-split { flex-direction: column; align-items: center; text-align: center; }
+  .avatar-frame { width: 110px; height: 130px; margin-bottom: 10px; border-radius: 55px 55px 10px 10px; }
+  .avatar-img { border-radius: 51px 51px 6px 6px; }
+  .nav-strip { flex-direction: column; gap: 8px; }
+  .sea-icon { display: none; }
+  .nav-pill { width: 100%; text-align: center; }
+  .banner-art-box { padding: 20px 10px; }
+  .banner-center-note { padding: 6px 14px; }
+  .social-list li { padding-right: 12px; }
+  .window-footer { margin-top: 10px; padding: 6px 8px; }
+  .footer-pill { padding: 3px 14px; min-height: 32px; font-size: 0.75rem; }
+  .outer-caption { padding: 8px 10px 12px; }
+}
+
+@media (max-width: 360px) {
+  .window-frame { min-width: 100%; border-radius: 12px; }
+  .ocean-browser { margin: 6px; padding: 8px; }
+}

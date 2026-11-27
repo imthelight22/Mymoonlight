@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- EDIT HERE: Browser Tab Title -->
+  <title>Moonlit Reunion - Commission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="window-frame">
+    <!-- Top Celestial Header -->
+    <div class="ribbon-header">
+      <div class="pink-trim"></div>
+      <div class="center-bow">
+        <span class="bow-wing left"></span>
+        <span class="shell-emblem">☾</span>
+        <span class="bow-wing right"></span>
+      </div>
+      <div class="lace-scallop"></div>
+    </div>
+
+    <!-- Main Glass Card -->
+    <div class="ocean-browser">
+      <!-- Background Music Control -->
+      <div class="music-bar">
+        <audio id="bg-music" src="Lullby Nodkrai.mp3" loop preload="metadata"></audio>
+        <button id="music-toggle" class="music-btn" type="button" aria-pressed="false">
+          <span class="music-label-left">Play</span>
+          <span class="music-icon" aria-hidden="true">▶</span>
+          <span class="music-label-right">lullaby</span>
+        </button>
+      </div>
+
+      <!-- Top Status & Title Bar -->
+      <header class="top-bar">
+        <div class="pill status-pill">
+          <!-- EDIT HERE: Commission Status -->
+          comms: <span>OPEN!</span>
+        </div>
+
+        <div class="pill title-pill">
+          <!-- EDIT HERE: Main Window Title -->
+          <h1>Commission - Digital &amp; Traditional Art</h1>
+        </div>
+
+        <div class="window-controls">
+          <span class="dot-btn" title="Moon">🌙</span>
+          <span class="dot-btn" title="Star">✴︎</span>
+          <span class="dot-btn" title="Feather">🪶</span>
+        </div>
+      </header>
+
+      <!-- Celestial Hero Banner -->
+      <section class="hero-banner">
+        <div class="banner-header">
+          <!-- EDIT HERE: Banner Tagline -->
+          <span class="big-phrase">Beneath the moon,</span>
+          <span class="small-phrase">we find each other.</span>
+        </div>
+
+        <div class="banner-art-box">
+          <!-- Looping moon background (keep the file next to this page) -->
+          <!-- Two copies crossfade into each other so the loop point is hidden (see script.js) -->
+          <video class="banner-video" muted playsinline preload="auto" autoplay aria-hidden="true">
+            <source src="moonbackground.mp4" type="video/mp4">
+          </video>
+          <video class="banner-video" muted playsinline preload="auto" aria-hidden="true">
+            <source src="moonbackground.mp4" type="video/mp4">
+          </video>
+
+          <span class="sea-deco d1">✦</span>
+          <span class="sea-deco d2">☾</span>
+          <span class="sea-deco d3">✧</span>
+          <span class="sea-deco d4">★</span>
+
+          <div class="banner-center-note">
+            <!-- EDIT HERE: Banner Welcome Note -->
+            <p>｡꩜˚⋆ welcome to my moonlit corner ⋆˚꩜｡</p>
+          </div>
+
+          <span class="art-credit">@light_o_o_o</span>
+        </div>
+      </section>
+
+      <!-- Navigation Strip -->
+      <nav class="nav-strip">
+        <span class="sea-icon">✦</span>
+        <button class="nav-pill active" data-tab="about">home 𖦹 about</button>
+        <span class="sea-icon">☾</span>
+        <button class="nav-pill" data-tab="tos">꒰ terms of service ꒱</button>
+        <span class="sea-icon">✦</span>
+      </nav>
+
+      <!-- Main Two-Column Content Grid -->
+      <main class="content-grid">
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+          <!-- TAB 1: HOME / ABOUT -->
+          <div id="tab-about" class="tab-panel active">
+            <!-- Name Ribbon (moon badge removed here) -->
+            <div class="name-row">
+              <div class="ribbon-box">
+                <!-- EDIT HERE: Your Name & Kaomoji -->
+                <span>🪶 : <strong>You can call me Light</strong> .’ ꒱ 𐔌՞ ܸ.ˬ.ܸ՞𐦯</span>
+              </div>
+            </div>
+
+            <!-- Bio Card -->
+            <div class="bio-split">
+              <div class="avatar-frame">
+                <img src="light.jpg" alt="Light's profile photo" class="avatar-img" />
+              </div>
+
+              <div class="bio-intro">
+                <!-- EDIT HERE: Greeting & Short Intro -->
+                <p class="greeting">಄ — Hii! ๑ᵔ⤙ᵔ๑</p>
+                <p>
+                  A creative soul who loves drawing (both digital and traditional), crafting, working with clay, and making thoughtful little gifts. I enjoy writing letters, creating random websites and games, and coding just for fun. I love experimenting with different things, from soft, dreamy vibes to darker aesthetics. Always creating something, even when it's random. ♡
+                  <span class="highlight">My home</span> is here!
+                </p>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="pearl-divider"></div>
+
+            <!-- Extended About Paragraph -->
+            <div class="bio-details">
+              <!-- EDIT HERE: Longer Description -->
+              <p>
+                — I love creating personalized pieces, handmade gifts, and little projects made with care. If you have an idea in mind, feel free to reach out!
+              </p>
+
+              <p class="comm-heading"> ಄ Available Commissions</p>
+              <ul class="comm-list">
+                <li><strong>Digital Art</strong> – Digital illustrations and personalized drawings.</li>
+                <li><strong>Traditional Art</strong> – Hand-drawn sketches and traditional artwork.</li>
+                <li><strong>Clay Creations</strong> – Small handmade clay pieces and charms.</li>
+                <li><strong>Customized Gifts</strong> – Personalized and handmade gifts for someone special (physical).</li>
+                <li><strong>Letters</strong> – Handmade letters and personalized written pieces (Digital/Physical).</li>
+              </ul>
+
+              <p class="comm-other">
+                <span class="highlight">Other Creative Projects – Have a random idea? I'm open to trying something new!</span>࣪   ˖⊹ 
+              </p>
+            </div>
+          </div>
+
+          <!-- TAB 2: TERMS OF SERVICE -->
+          <div id="tab-tos" class="tab-panel">
+            <div class="name-row">
+              <div class="star-badge">🪶</div>
+              <div class="ribbon-box">
+                <span>ε <strong>terms of service</strong> 3</span>
+              </div>
+            </div>
+            <div class="tos-box">
+              <!-- EDIT HERE: Your Rules / Terms of Service -->
+              <p class="greeting">🌙 — Please read before commissioning!</p>
+              <ul class="tos-list">
+                <li><strong>Payment:</strong> 50% upfront or full payment before sketching.</li>
+                <li><strong>Turnaround:</strong> 1–2 weeks depending on complexity.</li>
+                <li><strong>Will Draw:</strong> OCs, fanart, mermaid/ocean themes, soft color palettes.</li>
+                <li><strong>Other Information:</strong> Other commission details can be discussed through the contact form.</li>
+                <li><strong>Won't Draw:</strong> Mecha, heavy gore, NSFW.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: MY TOOLS / SIDEBAR -->
+        <aside class="right-col">
+          <div class="tools-header">
+            <!-- EDIT HERE: Sidebar Title -->
+            <h2>my tools</h2>
+            <div class="wave-line">〰〰〰〰〰〰〰〰</div>
+          </div>
+
+          <!-- Category 1 -->
+          <div class="tool-group">
+            <!-- EDIT HERE: Category 1 Heading -->
+            <div class="category-badge">Software</div>
+            <ul class="tool-list">
+              <!-- EDIT HERE: List Items -->
+              <li><strong>Clip Studio Paint</strong> <span>(my main love~!)</span></li>
+              <li><strong>Ibis Paint</strong> <span>(for quick sketches on the go)</span></li>
+            </ul>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="tool-group">
+            <!-- EDIT HERE: Category 2 Heading (the ✴︎ is tinted gold by .cat-icon) -->
+            <div class="category-badge"><span class="cat-icon"></span> Devices</div>
+            <ul class="tool-list">
+              <!-- EDIT HERE: List Items -->
+              <li><strong>Laptop</strong> <span>easy editing~!</span></li>
+              <li><strong>Phone</strong> <span>for mobile art adventures!</span></li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Socials -->
+          <div class="tool-group">
+            <!-- EDIT HERE: Category 3 Heading -->
+            <div class="category-badge"> Socials</div>
+            <ul class="tool-list social-list">
+              <!-- EDIT HERE: Replace # with your real profile links -->
+              <li><a href="https://www.instagram.com/light_o_o_o/" target="_blank" rel="noopener noreferrer">Instagram</a> <span>(@light_o_o_o)</span></li>
+              <li><a href="https://www.tiktok.com/@lightningto_" target="_blank" rel="noopener noreferrer">TikTok</a> <span>(@lightningto_)</span></li>
+              <li><a href="https://discordapp.com/users/1252587070698815550" target="_blank" rel="noopener noreferrer">Discord</a> <span>(@sweetgirl_shee)</span></li>
+              <li><a href="https://www.facebook.com/lightforthenightt" target="_blank" rel="noopener noreferrer">Facebook</a> <span>(my links)</span></li>
+            </ul>
+          </div>
+        </aside>
+      </main>
+
+      <!-- Footer -->
+      <footer class="window-footer">
+        <div class="footer-pill">
+          <!-- EDIT HERE: Footer Credit / Link -->
+          <a href="https://www.facebook.com/lightforthenightt" target="_blank" rel="noopener noreferrer">Made by me</a>
+        </div>
+      </footer>
+    </div>
+
+    <p class="outer-caption">⋆｡°✩ Two souls, one light. Forever remembered. ✩°｡⋆</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
